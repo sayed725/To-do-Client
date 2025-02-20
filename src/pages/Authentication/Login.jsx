@@ -119,7 +119,7 @@ const Login = () => {
                
 
 
-                <p className="text-center mt-4 textarea-sm">Do not have an account <Link className="text-green-600 font-bold" to="/auth/register">Register</Link></p>
+                <p className="text-center mt-4 textarea-sm">Do not have an account <Link className="text-green-600 font-bold" to="/register">Register</Link></p>
             </div>
         </div>
     );
