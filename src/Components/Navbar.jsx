@@ -1,111 +1,104 @@
-import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { AuthContext } from '../providers/AuthProvider';
+import { useContext } from "react";
+import { IoHome, IoNotifications } from "react-icons/io5";
+import { MdCardMembership, MdSpaceDashboard } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+
+import { Link, NavLink } from "react-router-dom";
 
 
 
 
+import { CgLogOut } from "react-icons/cg";
+
+import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = () => {
-
-  const {  user , logOut } = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
+  
   
 
+  
 
-
-    const links = <>
-     <li><NavLink className={({ isActive }) =>
-            ` ${isActive ? "tab-active  text-green-600 underline" : "" }`} to='/'>Home</NavLink></li>
-     <li><NavLink className={({ isActive }) =>
-            ` ${isActive ? "tab-active  text-green-600 underline" : "" }`} to='/about'>About Us</NavLink></li>
-    
-
-     <li><NavLink className={({ isActive }) =>
-            ` ${isActive ? "tab-active  text-green-600 underline" : "" }`} to='/userprofile'>My Profile</NavLink></li>
-     <li><NavLink className={({ isActive }) =>
-            ` ${isActive ? "tab-active  text-green-600 underline" : "" }`} to='/updateprofile'>UpdateProfile</NavLink></li>
-
+  const links = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? " active btn text-xl bg-[#005694] text-white  dark:text-white dark:hover:bg-[#005694]  hover:bg-[#005694]"
+              : "  btn text-3xl  hover:bg-[#005694] hover:text-white"
+          }
+          to="/"
+        >
+         Home
+        </NavLink>
+      </li>
     </>
+  );
 
+  return (
+    <div className="bg-[#005694] sticky top-0 z-10 mb-8  shadow-lg">
+      <div className="navbar mx-auto"> 
+        <div className="navbar-start hidden sm:block ">
+          <Link to="/" className="flex gap-2 items-center">
+            <img className="w-auto h-7" src="/todo-logo-removebg-preview.png" alt="logo" />
+            <p className="font-bold text-white">PostPad</p>
+          </Link>
+        </div>
 
-
-    return (
-        <div className="navbar bg-[#0f2d3c] py-5 rounded-t-md">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-white z-50">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16" />
-              </svg>
+        <div className="sm:navbar-end gap-2 sm:gap-5 mx-auto w-full">
+          <ul className="flex justify-between gap-2 sm:gap-5 mx-auto lg:mx-0  text-sm ">
+            <div className="flex">
+              <ul className="flex justify-between gap-2 sm:gap-5">{links}</ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-[#0f2d3c] rounded-box z-[50] mt-3 w-52 p-2 shadow text-white">
-             {links}
-            </ul>
-          </div>
-          <a className=" text-xl">
-          <img className='h-[50px] w-[150px] object-cover' src="/GreenEdventures-Main-Logo.png" alt="" />
-          </a>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-white">
-           {links}
           </ul>
+
+          {user && (
+            <div className="dropdown dropdown-end z-50">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div title={user?.displayName} className="w-10 rounded-full">
+                  <img
+                    referrerPolicy="no-referrer"
+                    alt="User Profile Photo"
+                    src={user?.photoURL}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content z-[1] rounded-box  font-bold"
+              >
+                <div className="w-64 bg-white  shadow-lg rounded-lg p-5">
+                  <div className=" mb-4">
+                    <h2 className="text-xl font-bold">
+                      {user && user?.displayName}
+                    </h2>
+                    <p className="text-sm text-gray-600">
+                      {user && user?.email}
+                    </p>
+                  </div>
+                  <div className="flex flex-col space-y-4">
+                   
+                    <Link
+                      onClick={logOut}
+                      className="flex items-center space-x-2 rounded-md border-2   bg-[#005694] text-white px-3 py-3 hover:bg-[#005694] hover:text-white text-center"
+                    >
+                      <CgLogOut className="hover:text-black" />
+                      <span>Logout</span>
+                    </Link>
+                  </div>
+                </div>
+              </ul>
+            </div>
+          )}
         </div>
-
-        
-        <div className="navbar-end">
-        <div className="login flex gap-2 items-center">
-          <div className=" ">
-          {user && user?.email && user?.photoURL ? (
-            
-
-            <div className="relative group flex items-center">
-     
-      <img
-        src={user?.photoURL}
-        alt="User Profile"
-        className="w-[50px] h-[50px] rounded-full  cursor-pointer"
-      />
-     
-      <div className="absolute top-0 right-[60px] bg-black text-white text-sm font-medium py-1 px-2 rounded shadow-lg opacity-0 group-hover:opacity-100 z-50 transition-opacity duration-200">
-        {user?.displayName}
       </div>
     </div>
-
-
-
-          ) : (
-            <img className="w-10" src='' alt="" />
-          )}
-          </div>
-
-          {
-            user && user?.email ? 
-
-
-           <div>
-             <button onClick={logOut} className="btn rounded-md border-none  text-white  bg-green-700 hover:text-black hover:bg-green-600">Log-out</button>  
-           </div>
-
-
-               : <Link to='/auth/login'  className="btn rounded-md border-none  text-white  bg-green-600 hover:text-black hover:bg-green-700">Login</Link>
-          }
-         
-        </div>
-        </div>
-      </div>
-    );
+  );
 };
 
 export default Navbar;
