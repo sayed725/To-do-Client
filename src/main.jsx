@@ -23,7 +23,7 @@ const queryClient = new QueryClient()
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
 
  <HelmetProvider>
   <AuthProvider>
@@ -34,5 +34,5 @@ createRoot(document.getElementById('root')).render(
   </AuthProvider>
  </HelmetProvider>
 
-  </StrictMode>,
+  // </StrictMode>,
 )

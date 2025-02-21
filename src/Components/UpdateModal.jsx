@@ -9,7 +9,6 @@ import useTasks from "../Hooks/useTasks";
 const UpdateModal = ({ task }) => {
   const { user } = useContext(AuthContext);
   const [, , refetch] = useTasks();
-  const api_url = import.meta.env.VITE_API_URL;
   const categoryOption = ["to-do", "in-progress", "done"];
   const [selectedItem, setSelectedItem] = useState(task.category);
   const handleSubmit = async (e) => {
@@ -19,7 +18,7 @@ const UpdateModal = ({ task }) => {
     const description = form.description.value;
     const category = selectedItem;
     try {
-      const { data } = await axios.put(`${api_url}/update-task/${task._id}`, {
+      const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/update-task/${task._id}`, {
         title,
         description,
         category,
@@ -29,7 +28,7 @@ const UpdateModal = ({ task }) => {
         document.getElementById(`modal-${task._id}`).close();
         Swal.fire({
           icon: "success",
-          title: "Task Updated Successfully",
+          title: " Your Task Updated Successfully",
         });
       }
     } catch (error) {
@@ -50,12 +49,12 @@ const UpdateModal = ({ task }) => {
             <button className="btn btn-ghost btn-circle text-2xl">✕</button>
           </form>
         </div>
-        {/* Update Task Form  */}
+        {/*  Task Form  */}
         <form onSubmit={handleSubmit} className="mt-4 space-y-4">
-          {/* Task Title */}
+          {/*  Title */}
           <div className="w-full md:w-[100%]">
-            <label htmlFor="title" className="text-[15px] text-text font-[500]">
-              Task Title
+            <label htmlFor="title">
+            Title
             </label>
             <input
               type="text"
@@ -65,13 +64,12 @@ const UpdateModal = ({ task }) => {
               className="border-border border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300 transition-colors duration-300"
             />
           </div>
-          {/* Task Description */}
+          {/*  Description */}
           <div className="w-full md:w-[100%]">
             <label
               htmlFor="description"
-              className="font-[500] text-[15px] text-text"
             >
-              Task Description
+            Description
             </label>
             <textarea
               name="description"
@@ -80,13 +78,13 @@ const UpdateModal = ({ task }) => {
               className="border-border border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300 transition-colors duration-300"
             />
           </div>
-          {/* Task Category */}
+          {/*  Category */}
           <div className="w-full md:w-[100%]">
             <label
               htmlFor="description"
-              className="font-[500] text-[15px] text-text"
+
             >
-              Update Category
+            Category
             </label>
             <select
               value={selectedItem}
@@ -101,7 +99,7 @@ const UpdateModal = ({ task }) => {
             </select>
           </div>
           {/* Submit Button */}
-          <div className="w-2/3 mx-auto">
+          <div className="w-full mx-auto">
             <button
               type="submit"
               className="btn w-full hover:bg-[#005694] bg-[#005694] text-white font-semibold "

@@ -44,8 +44,7 @@ const Home = () => {
               Welcome, {user?.displayName}
             </h1>
             <h1 className="w-full md:w-2/3 mt-2 text-lg md:text-xl font-medium tracking-wide">
-              Easily add, update, delete, and view your tasks in one place. Stay
-              organized and boost your productivity!
+              Easily Add, update, Delete, and View your tasks.
             </h1>
           </div>
           {/* Tasks */}

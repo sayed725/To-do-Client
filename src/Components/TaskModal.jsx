@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
   const { user } = useContext(AuthContext);
   const [, , refetch] = useTasks();
-  const api_url = import.meta.env.VITE_API_URL;
+  
 
   // Function for post task in db --->
   const handleSubmit = async (e) => {
@@ -50,19 +50,16 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
       <div
         className={`${
           isModalOpen ? "scale-[1] opacity-100" : "scale-[0] opacity-0"
-        } w-[90%] sm:w-[80%] md:w-[65%] lg:w-[40%] bg-[#fff] rounded-lg transition-all duration-300 mx-auto mt-8`}
+        } w-[90%] sm:w-[80%] md:w-[70%] lg:w-[40%] bg-white rounded-lg transition-all duration-300 mx-auto mt-8`}
       >
         <div className="w-full flex p-5 justify-between items-center">
           <div>
             <h1 className="mt-[2px] text-4xl  font-bold">Add A Task</h1>
           </div>
-          <RxCross1
-            className="p-1 text-4xl hover:bg-[#e7e7e7] rounded-full transition-all duration-300 cursor-pointer"
-            onClick={() => setIsModalOpen(false)}
-          />
+          <button onClick={() => setIsModalOpen(false)} className="btn btn-ghost text-2xl">✕</button>
         </div>
         {/* Task Form  */}
-        <form onSubmit={handleSubmit} className="p-4 space-y-4">
+        <form onSubmit={handleSubmit} className="p-5 space-y-4">
           {/* Task Title */}
           <div className="w-full md:w-[100%]">
             <label htmlFor="title" className="text-[15px] text-text font-[500]">
@@ -86,7 +83,7 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
             <textarea
               name="description"
               placeholder="Task Description"
-              className="border-border border rounded-md outline-none mt-1 px-4 w-full py-3 min-h-[200px] focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300 transition-colors duration-300"
+              className="border-border border rounded-md outline-none mt-1 px-4 w-full py-3 min-h-[250px] focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300 transition-colors duration-300"
             />
           </div>
           {/* Submit Button */}

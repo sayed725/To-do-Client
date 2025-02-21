@@ -47,9 +47,9 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end gap-2 sm:gap-5 mx-auto w-full">
-          <ul className="flex justify-between gap-2 sm:gap-5 mx-auto lg:mx-0  text-sm ">
+          <ul className="flex gap-2 sm:gap-5 mx-auto lg:mx-0  text-sm ">
             <div className="flex">
-              <ul className="flex justify-between gap-2 sm:gap-5">{links}</ul>
+              <ul className="flex gap-2 sm:gap-5">{links}</ul>
             </div>
           </ul>
 
