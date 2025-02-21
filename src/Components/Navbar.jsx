@@ -25,28 +25,28 @@ const Navbar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? " active btn text-xl bg-[#005694] text-white  dark:text-white dark:hover:bg-[#005694]  hover:bg-[#005694]"
-              : "  btn text-3xl  hover:bg-[#005694] hover:text-white"
+              ? " active text-lg text-white underline"
+              : " text-lg text-white"
           }
           to="/"
         >
-         Home
+         Dashboard
         </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="bg-[#005694] sticky top-0 z-10 mb-8  shadow-lg">
-      <div className="navbar mx-auto"> 
-        <div className="navbar-start hidden sm:block ">
+    <div className="bg-[#005694]  shadow-lg">
+      <div className="navbar mx-auto px-5"> 
+        <div className="navbar-start">
           <Link to="/" className="flex gap-2 items-center">
             <img className="w-auto h-7" src="/todo-logo-removebg-preview.png" alt="logo" />
-            <p className="font-bold text-white">PostPad</p>
+            <p className="font-bold text-white">To-Do</p>
           </Link>
         </div>
 
-        <div className="sm:navbar-end gap-2 sm:gap-5 mx-auto w-full">
+        <div className="navbar-end gap-2 sm:gap-5 mx-auto w-full">
           <ul className="flex justify-between gap-2 sm:gap-5 mx-auto lg:mx-0  text-sm ">
             <div className="flex">
               <ul className="flex justify-between gap-2 sm:gap-5">{links}</ul>
