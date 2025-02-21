@@ -5,7 +5,6 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const useTasks = () => {
   const { user } = useContext(AuthContext);
-  const api_url = import.meta.env.VITE_API_URL;
 
   const {
     data: tasks = [],
@@ -14,7 +13,7 @@ const useTasks = () => {
   } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const { data } = await axios.get(`${api_url}/my-tasks/${user.email}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/tasks/${user.email}`);
       return data;
     },
   });
