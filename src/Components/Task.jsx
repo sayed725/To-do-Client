@@ -10,7 +10,6 @@ import useTasks from "../Hooks/useTasks";
 import UpdateModal from "./UpdateModal";
 
 const Task = () => {
-  const api_url = import.meta.env.VITE_API_URL;
   // Get all tasks --->
   const [tasks, isLoading, refetch] = useTasks();
 
@@ -59,7 +58,7 @@ const Task = () => {
 
     // Update category in Database
     const { data } = await axios.patch(
-      `${api_url}/update-task-category/${movedTask._id}`,
+      `${import.meta.env.VITE_API_URL}/update-task-category/${movedTask._id}`,
       {
         category: destCategory,
       }

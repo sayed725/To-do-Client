@@ -40,14 +40,11 @@ const UpdateModal = ({ task }) => {
   return (
     <dialog id={`modal-${task._id}`} className="modal text-left">
       <div className="modal-box text-black">
-        <div className="w-full flex justify-between items-stretch text-black border-b border-[#d1d1d1]">
+        <div className="w-full flex justify-between items-stretch text-black">
           <div>
-            <h1 className="mt-[2px] text-[1.5rem] font-bold text-left">
-              Add A Task
+            <h1 className="mt-[2px] text-4xl font-bold text-left">
+              Update Your Task
             </h1>
-            <h3 className="mt-2 mb-3 text-base font-medium">
-              Update your task details below and save changes.
-            </h3>
           </div>
           <form method="dialog">
             <button className="btn btn-ghost btn-circle text-2xl">✕</button>
@@ -65,7 +62,7 @@ const UpdateModal = ({ task }) => {
               name="title"
               defaultValue={task.title}
               placeholder="Task Title"
-              className="border-border border rounded-md outline-none px-4 w-full mt-3 py-3 focus:border-primary font-normal leading-5  transition-colors duration-300"
+              className="border-border border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300 transition-colors duration-300"
             />
           </div>
           {/* Task Description */}
@@ -80,7 +77,7 @@ const UpdateModal = ({ task }) => {
               name="description"
               defaultValue={task.description}
               placeholder="Task Description"
-              className="border-border border  font-normal leading-5 rounded-md outline-none mt-3 px-4 w-full py-3 min-h-[200px] focus:border-primary transition-colors duration-300"
+              className="border-border border rounded-md outline-none px-4 w-full mt-1 py-3 focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300 transition-colors duration-300"
             />
           </div>
           {/* Task Category */}
@@ -107,7 +104,7 @@ const UpdateModal = ({ task }) => {
           <div className="w-2/3 mx-auto">
             <button
               type="submit"
-              className="btn w-full hover:bg-[#006eff] bg-primary text-white font-semibold "
+              className="btn w-full hover:bg-[#005694] bg-[#005694] text-white font-semibold "
             >
               Update Task
             </button>
