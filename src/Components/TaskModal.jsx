@@ -90,7 +90,7 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
           <div className="w-full mx-auto">
             <button
               type="submit"
-              className="btn w-full hover:bg-[#005694] bg-[#005694] text-white font-semibold "
+              className="btn w-full hover:bg-[#0f2d3c] bg-[#0f2d3c] text-white font-semibold "
             >
               Add Task
             </button>

@@ -37,12 +37,12 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-[#005694]  shadow-lg">
+    <div className="bg-[#0f2d3c]  shadow-lg">
       <div className="navbar mx-auto px-5"> 
         <div className="navbar-start">
           <Link to="/" className="flex gap-2 items-center">
             <img className="w-auto h-7" src="/todo-logo-removebg-preview.png" alt="logo" />
-            <p className="font-bold text-white">To-Do</p>
+            <p className="font-bold text-2xl text-white">To-Do</p>
           </Link>
         </div>
 

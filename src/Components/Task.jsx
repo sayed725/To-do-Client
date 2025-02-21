@@ -158,7 +158,7 @@ const Task = () => {
                                 .getElementById(`modal-${task._id}`)
                                 .showModal()
                             }
-                            className="btn btn-sm tooltip hover:bg-white text-[#005694]"
+                            className="btn btn-sm tooltip hover:bg-white text-[#0f2d3c]"
                             data-tip="Update"
                           >
                             <MdEditNote size={25} />

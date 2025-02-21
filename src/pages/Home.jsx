@@ -20,7 +20,7 @@ const Home = () => {
       <div
         className={`fixed xl:relative top-0 ${
           isSidebarOpen ? "left-0" : "-left-full"
-        } xl:left-0 min-w-2/12 xl:w-3/12 max-w-[300px] md:max-w-[250px] min-h-screen  bg-[#005694] p-6 transition-all duration-500 z-50`}
+        } xl:left-0 min-w-2/12 xl:w-3/12 max-w-[300px] md:max-w-[250px] min-h-screen  bg-[#0f2d3c] p-6 transition-all duration-500 z-50`}
       >
         <Sidebar onToggleSidebar={toggleSidebar} />
       </div>
