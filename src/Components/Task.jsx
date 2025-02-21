@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import axios from "axios";
 
-
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
-import Loading from "./Loading";
+
 import useTasks from "../Hooks/useTasks";
+import UpdateModal from "./UpdateModal";
 
 const Task = () => {
   const api_url = import.meta.env.VITE_API_URL;
-
   // Get all tasks --->
   const [tasks, isLoading, refetch] = useTasks();
 
@@ -60,7 +59,7 @@ const Task = () => {
 
     // Update category in Database
     const { data } = await axios.patch(
-      `${import.meta.env.VITE_API_URL}/update-task/${movedTask._id}`,
+      `${api_url}/update-task-category/${movedTask._id}`,
       {
         category: destCategory,
       }
@@ -102,7 +101,7 @@ const Task = () => {
   };
 
   // Show loader
-  if (isLoading) return <Loading />;
+  if (isLoading) return <div className="bg-white h-screen" />;
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -141,10 +140,17 @@ const Task = () => {
                         <div className="mt-4 flex items-start gap-4 w-full">
                           {/* Update Btn */}
                           <button
+                            onClick={() =>
+                              document
+                                .getElementById(`modal-${task._id}`)
+                                .showModal()
+                            }
                             className="btn tooltip hover:bg-white text-blue-500"
                             data-tip="Update Task"
                           >
                             <FaRegEdit size={30} />
+                            {/* Update Modal */}
+                            <UpdateModal task={task} />
                           </button>
                           {/* Delete Btn */}
                           <button
