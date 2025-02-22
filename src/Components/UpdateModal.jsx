@@ -1,10 +1,11 @@
 import axios from "axios";
-import Swal from "sweetalert2";
+
 
 
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import useTasks from "../Hooks/useTasks";
+import toast from "react-hot-toast";
 
 const UpdateModal = ({ task }) => {
   const { user } = useContext(AuthContext);
@@ -26,20 +27,17 @@ const UpdateModal = ({ task }) => {
       if (data.modifiedCount) {
         refetch();
         document.getElementById(`modal-${task._id}`).close();
-        Swal.fire({
-          icon: "success",
-          title: " Your Task Updated Successfully",
-        });
+        toast.success("Task Updated Successfully");
       }
     } catch (error) {
-      Swal.fire({ icon: "error", title: error.message });
+      toast.error(`${error.message}`);
     }
   };
 
   return (
     <dialog id={`modal-${task._id}`} className="modal text-left">
-      <div className="modal-box text-black">
-        <div className="w-full flex justify-between items-stretch text-black">
+      <div className="modal-box text-black dark:bg-[#20293d] dark:text-white">
+        <div className="w-full flex justify-between items-stretch text-black dark:text-white">
           <div>
             <h1 className="mt-[2px] text-4xl font-bold text-left">
               Update Your Task
@@ -89,7 +87,7 @@ const UpdateModal = ({ task }) => {
             <select
               value={selectedItem}
               onChange={(e) => setSelectedItem(e.target.value)}
-              className="mt-3 select select-bordered w-full"
+              className="mt-3 select select-bordered w-full dark:bg-[#20293d]"
             >
               {categoryOption.map((option) => (
                 <option key={option} value={option}>
@@ -99,10 +97,10 @@ const UpdateModal = ({ task }) => {
             </select>
           </div>
           {/* Submit Button */}
-          <div className="w-full mx-auto">
+          <div className="w-full pt-3 mx-auto">
             <button
               type="submit"
-              className="btn w-full hover:bg-[#0f2d3c] bg-[#0f2d3c] text-white font-semibold "
+              className="btn w-full hover:bg-[#0f2d3c] dark:bg-[#005694] dark:hover:bg-[#005694] bg-[#0f2d3c] text-white font-semibold  "
             >
               Update Task
             </button>

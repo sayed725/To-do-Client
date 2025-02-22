@@ -1,8 +1,4 @@
-import { RxCross1 } from "react-icons/rx";
-
 import axios from "axios";
-import Swal from "sweetalert2";
-
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import useTasks from "../Hooks/useTasks";
@@ -11,7 +7,6 @@ import toast from "react-hot-toast";
 const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
   const { user } = useContext(AuthContext);
   const [, , refetch] = useTasks();
-  
 
   // Function for post task in db --->
   const handleSubmit = async (e) => {
@@ -20,15 +15,15 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
     const title = form.title.value;
     const description = form.description.value;
 
-   if(title.length >50){
-    toast.error("Title should be less than 50 characters");
-    return;
-   }
+    if (title.length > 50) {
+      toast.error("Title should be less than 50 characters");
+      return;
+    }
 
-   if(description.length >200){
-    toast.error("Title should be less than 200 characters");
-    return;
-   }
+    if (description.length > 200) {
+      toast.error("Title should be less than 200 characters");
+      return;
+    }
 
     const task = {
       title,
@@ -40,13 +35,16 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
     };
     try {
       // Post task in db --->
-      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/add-task`, task);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/add-task`,
+        task
+      );
       // Show Success Modal --->
       if (data.insertedId) {
         refetch();
         form.reset();
         setIsModalOpen(false);
-       toast.success("Task Added Successfully");
+        toast.success("Task Added Successfully");
       }
     } catch (error) {
       toast.error(`${error.message}`);
@@ -61,13 +59,18 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
       <div
         className={`${
           isModalOpen ? "scale-[1] opacity-100" : "scale-[0] opacity-0"
-        } w-[90%] sm:w-[80%] md:w-[70%] lg:w-[40%] bg-white rounded-lg transition-all duration-300 mx-auto mt-8`}
+        } w-[90%] sm:w-[80%] md:w-[70%] lg:w-[40%] bg-white dark:bg-[#20293d] dark:text-white rounded-lg transition-all duration-300 mx-auto mt-8`}
       >
         <div className="w-full flex p-5 justify-between items-center">
           <div>
             <h1 className="mt-[2px] text-4xl  font-bold">Add A Task</h1>
           </div>
-          <button onClick={() => setIsModalOpen(false)} className="btn btn-ghost text-2xl">✕</button>
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="btn btn-ghost text-2xl"
+          >
+            ✕
+          </button>
         </div>
         {/* Task Form  */}
         <form onSubmit={handleSubmit} className="p-5 space-y-4">
@@ -101,7 +104,7 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
           <div className="w-full mx-auto">
             <button
               type="submit"
-              className="btn w-full hover:bg-[#0f2d3c] bg-[#0f2d3c] text-white font-semibold "
+              className="btn w-full hover:bg-[#0f2d3c] dark:bg-[#005694] dark:hover:bg-[#005694] bg-[#0f2d3c] text-white font-semibold "
             >
               Add Task
             </button>

@@ -3,20 +3,16 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import axios from "axios";
 import { MdEditNote } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import Swal from "sweetalert2";
-
-
 import useTasks from "../Hooks/useTasks";
 import useUpTaskCategory from "../Hooks/useUpTaskCategory";
 import UpdateModal from "./UpdateModal";
+import toast from "react-hot-toast";
 
 const Task = () => {
   const api_Url = import.meta.env.VITE_API_URL;
 
-
   const [tasks, isLoading, refetch] = useTasks();
 
- 
   const [taskData, setTaskData] = useState({
     "to-do": [],
     "in-progress": [],
@@ -34,7 +30,6 @@ const Task = () => {
     }
   }, [tasks]);
 
-  
   const updateTaskCategory = useUpTaskCategory();
 
   //  Drag End
@@ -57,7 +52,7 @@ const Task = () => {
       setTaskData((prev) => {
         const updatedTasks = { ...prev };
 
-        // Remove task 
+        // Remove task
         const [movedTask] = updatedTasks[sourceCategory].splice(
           source.index,
           1
@@ -79,41 +74,53 @@ const Task = () => {
     [updateTaskCategory, setTaskData]
   );
 
-  // Delete
-  const handleDelete = useCallback(
-    async (id) => {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#0083ff",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/task/${id}`);
-            if (data.deletedCount) {
-              refetch();
-              Swal.fire({
-                title: "Your Task has been Deleted",
-                icon: "success",
-              });
-            }
-          } catch (error) {
-            Swal.fire({
-              icon: "error",
-              title: error.message,
-            });
+  // delete functionality
+  const handleDelete = async (id) => {
+    try {
+      await axios
+        .delete(`${import.meta.env.VITE_API_URL}/task/${id}`)
+        .then((res) => {
+          // console.log(res.data)
+          if (res.data.deletedCount) {
+            toast.success("Your Task has been Deleted");
+            refetch();
           }
-        }
-      });
-    },
-    [api_Url, refetch]
-  );
+        });
+    } catch (err) {
+      // console.log(err)
+      toast.error(err.message);
+    }
+  };
 
- 
+  const modernDelete = (id) => {
+    toast((t) => (
+      <div className="flex gap-3 items-center">
+        <div>
+          <p>
+            Are you <b>sure?</b>
+          </p>
+        </div>
+        <div className="gap-2 flex">
+          <button
+            className="bg-red-400 text-white px-3 py-1 rounded-md"
+            onClick={() => {
+              toast.dismiss(t.id);
+              handleDelete(id);
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="bg-green-400 text-white px-3 py-1 rounded-md"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ));
+  };
+
   if (isLoading) return <div className="bg-white h-screen" />;
 
   return (
@@ -167,7 +174,7 @@ const Task = () => {
                           </button>
                           {/* Delete */}
                           <button
-                            onClick={() => handleDelete(task._id)}
+                            onClick={() => modernDelete(task._id)}
                             className="btn btn-sm tooltip dark:bg-[#2f3d5d] dark:text-red-500 dark:hover:bg-[#2f3d5d] hover:bg-white text-red-500"
                             data-tip="Delete"
                           >
