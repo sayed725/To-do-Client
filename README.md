@@ -21,10 +21,7 @@ A Task Management Application where users can add, edit, delete, and reorder tas
   - Tasks persist on refresh.
 - **Modern UI**: Built with Vite.js, React, and Tailwind CSS.
 - **Mobile Responsive**: Works on both desktop and mobile.
-- **Bonus Features** (if implemented):
-  - Dark mode toggle.
-  - Task due dates with color indicators.
-  - Activity log to track task changes.
+
 
 ## 🏗 Tech Stack
 ### **Frontend**
@@ -35,8 +32,8 @@ A Task Management Application where users can add, edit, delete, and reorder tas
 
 ### **Backend**
 - Node.js + Express.js
-- MongoDB + Mongoose
-- WebSockets (or alternative real-time syncing solution)
+- MongoDB
+
 
 ## 📂 Folder Structure
 ```
@@ -48,7 +45,9 @@ A Task Management Application where users can add, edit, delete, and reorder tas
 │   │   ├── App.js
 │   │   ├── index.js
 │   ├── package.json
-│
+
+## Backend
+
 ├── 📁 backend
 │   ├── 📁 models
 │   ├── 📁 routes
@@ -58,11 +57,29 @@ A Task Management Application where users can add, edit, delete, and reorder tas
 ├── README.md
 ```
 
-## 🔧 Installation & Setup
+## 🔧 Installation & Setup Frontend
 ### **1. Clone the Repository**
 ```sh
-git clone https://github.com/yourusername/task-manager-app.git
-cd task-manager-app
+git clone https://github.com/sayed725/To-do-Client
+cd To-Do-Client
+```
+
+
+### **2. Setup Frontend**
+```sh
+npm install
+```
+- Create a `.env` file and add your Firebase API keys.
+- Start the frontend application:
+```sh
+npm run dev
+```
+## 🔧 Installation & Setup Backend
+
+### **1. Clone the Repository**
+```sh
+git clone https://github.com/sayed725/To-Do-Server
+cd To-Do-Server
 ```
 
 ### **2. Setup Backend**
@@ -76,16 +93,6 @@ npm install
 npm run dev
 ```
 
-### **3. Setup Frontend**
-```sh
-cd frontend
-npm install
-```
-- Create a `.env` file and add your Firebase API keys.
-- Start the frontend application:
-```sh
-npm run dev
-```
 
 ## 📌 API Endpoints
 | Method | Endpoint         | Description                     |
@@ -95,12 +102,11 @@ npm run dev
 | PUT    | `/tasks/:id`    | Update task details            |
 | DELETE | `/tasks/:id`    | Delete a task                  |
 
-## 📜 License
-This project is open-source and available under the [MIT License](LICENSE).
+
 
 ## 🤝 Contributing
 Contributions are welcome! Feel free to fork the repo and submit pull requests.
 
 ## 📧 Contact
-For any inquiries, reach out at [your email].
+For any inquiries, reach out at [ssayed72533@gmail.com].
 
