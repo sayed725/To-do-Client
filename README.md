@@ -1,7 +1,7 @@
 # Task Management Application
 
 ## 🚀 Live Demo
-[Click here to view the live application](#)
+[Click here to view the live application](https://simple-to-do-f9f85.web.app/)
 
 ## 📌 Description
 A Task Management Application where users can add, edit, delete, and reorder tasks using a drag-and-drop interface. The app ensures real-time data synchronization with MongoDB and provides a seamless user experience with Firebase authentication.
