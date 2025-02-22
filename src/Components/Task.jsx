@@ -125,7 +125,7 @@ const Task = () => {
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="p-5 bg-white rounded-lg w-full shadow-md h-fit min-h-[120px]"
+                className="p-5 bg-white dark:bg-[#20293d] dark:text-white rounded-lg w-full shadow-md h-fit min-h-[120px]"
               >
                 <h1 className="text-2xl font-semibold tracking-wide capitalize">
                   {category.replace("-", " ")}
@@ -141,34 +141,34 @@ const Task = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="bg-gray-100 p-4 mt-4 rounded-md drop-shadow shadow-md cursor-pointer border-gray-200"
+                        className="bg-gray-100 dark:bg-[#2f3d5d] dark:text-white p-4 mt-4 rounded-md drop-shadow shadow-md cursor-pointer border-gray-200"
                       >
                         <h1 className="text-xl md:text-2xl font-semibold tracking-wider">
                           {task.title}
                         </h1>
-                        <h3 className="text-lg mt-2 font-normal tracking-wide text-gray-600 whitespace-pre-line">
+                        <h3 className="text-lg mt-2 font-normal tracking-wide text-gray-600 dark:text-white whitespace-pre-line">
                           {task.description}
                         </h3>
-                        {/* Delete btn */}
+                        {/* Delete  */}
                         <div className="mt-4 flex items-start gap-4 w-full">
-                          {/* Update Btn */}
+                          {/* Update  */}
                           <button
                             onClick={() =>
                               document
                                 .getElementById(`modal-${task._id}`)
                                 .showModal()
                             }
-                            className="btn btn-sm tooltip hover:bg-white text-[#0f2d3c]"
+                            className="btn btn-sm dark:bg-[#2f3d5d] dark:text-blue-500 tooltip dark:hover:bg-[#2f3d5d] hover:bg-white text-[#0f2d3c]"
                             data-tip="Update"
                           >
                             <MdEditNote size={25} />
-                            {/* Update Modal */}
+                            {/*  Modal */}
                             <UpdateModal task={task} />
                           </button>
-                          {/* Delete Btn */}
+                          {/* Delete */}
                           <button
                             onClick={() => handleDelete(task._id)}
-                            className="btn btn-sm tooltip hover:bg-white text-red-500"
+                            className="btn btn-sm tooltip dark:bg-[#2f3d5d] dark:text-red-500 dark:hover:bg-[#2f3d5d] hover:bg-white text-red-500"
                             data-tip="Delete"
                           >
                             <MdDelete size={25} />

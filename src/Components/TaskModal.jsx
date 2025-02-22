@@ -19,6 +19,17 @@ const TaskModal = ({ isModalOpen, setIsModalOpen }) => {
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
+
+   if(title.length >50){
+    toast.error("Title should be less than 50 characters");
+    return;
+   }
+
+   if(description.length >200){
+    toast.error("Title should be less than 200 characters");
+    return;
+   }
+
     const task = {
       title,
       description,

@@ -11,6 +11,7 @@ import { Link, NavLink } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
 
 import { AuthContext } from "../providers/AuthProvider";
+import Darkmode from "./Darkmode";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -37,7 +38,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-[#0f2d3c]  shadow-lg">
+    <div className="bg-[#0f2d3c] dark:bg-[#20293d]  shadow-lg">
       <div className="navbar mx-auto px-5"> 
         <div className="navbar-start">
           <Link to="/" className="flex gap-2 items-center">
@@ -52,6 +53,7 @@ const Navbar = () => {
               <ul className="flex gap-2 sm:gap-5">{links}</ul>
             </div>
           </ul>
+          <Darkmode></Darkmode>
 
           {user && (
             <div className="dropdown dropdown-end z-50">
